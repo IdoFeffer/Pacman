@@ -1,15 +1,24 @@
 "use strict"
 
+const GHOST_IMAGES = [
+  "img/blue-ghost.png",
+  "img/red-ghost.png",
+  "img/green-ghost.png",
+]
+const SUPER_GHOST_IMG = "img/yellow-ghost.png"
 const GHOST = "&#9781;"
+
 var gGhosts
 var gIntervalGhosts
 var deletedGhost
 
 function createGhost(board) {
+  if (gGhosts.length >= GHOST_IMAGES.length) return
+
   var ghost = {
     location: { i: 3, j: 3 },
     currCellContent: FOOD,
-    color: getRandomColor(),
+    imgSrc: GHOST_IMAGES[gGhosts.length],
   }
   gGhosts.push(ghost)
   board[ghost.location.i][ghost.location.j] = GHOST
@@ -97,12 +106,11 @@ function getMoveDiff() {
 }
 
 function getGhostHTML(ghost) {
-  return `<span style="color:${ghost.color}">${GHOST}</span>`
-}
+  return `<img src="${ghost.imgSrc}" alt="Ghost" style="height: 30px;">`;}
 
 function changeGhostColor() {
   for (var i = 0; i < gGhosts.length; i++) {
-    gGhosts[i].color = "#0000ff"
+    gGhosts[i].imgSrc = "img/yellow-ghost.png"
   }
 }
 

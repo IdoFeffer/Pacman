@@ -1,5 +1,7 @@
 "use strict"
 
+// const PACMAN_IMAGES = "img/pacman.png"
+
 const PACMAN = "😀"
 var gPacman
 
@@ -29,7 +31,7 @@ function onMovePacman(ev) {
   // return if cannot move
   if (nextCell === WALL) return
 
-  // hitting ghost? call gameOver
+  ///// hitting ghost? call gameOver
   if (nextCell === GHOST) {
     if (gPacman.isSuper) {
       removeGhost(gPacman.location)
@@ -50,6 +52,7 @@ function onMovePacman(ev) {
   }
   
   if (nextCell === CHERRY) {
+    gFoodCount--
     playEatingFruitSound() 
     updateScore(10)
   }
@@ -131,8 +134,7 @@ function superPower() {
 
 function endSuperPower() {
   gPacman.isSuper = false
-
   for (var i = 0; i < gGhosts.length; i++) {
-    gGhosts[i].color = getRandomColor()
+    gGhosts[i].imgSrc = GHOST_IMAGES[i]
   }
 }

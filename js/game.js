@@ -20,7 +20,7 @@ function onInit() {
 
   createPacman(gBoard)
   createGhosts(gBoard)
-  setInterval(addCherry, 2000)
+  setInterval(addCherry, 15000)
   renderBoard(gBoard)
   gGame.isOn = true
 }
@@ -138,7 +138,6 @@ function addCherry() {
     console.log("Skipping cherry - no empty cells available!")
     return
   }
-
   gBoard[emptyCell.i][emptyCell.j] = CHERRY
   renderCell(emptyCell, CHERRY)
   setTimeout(() => {
